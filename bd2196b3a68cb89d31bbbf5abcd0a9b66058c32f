@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "3d4ff276_3cede6f8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-02-24T18:17:48Z",
+      "side": 1,
+      "message": "1969941: Release wakelock if setRadioCapability is not supported | https://android-review.googlesource.com/c/platform/frameworks/opt/telephony/+/1969941",
+      "revId": "bd2196b3a68cb89d31bbbf5abcd0a9b66058c32f",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
