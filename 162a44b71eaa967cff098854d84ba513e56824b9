@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "1a482256_48a06ce6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2022-09-19T10:44:12Z",
+      "side": 1,
+      "message": "Can\u0027t really verify but this supposedly fixes verizon issues on qcom",
+      "revId": "162a44b71eaa967cff098854d84ba513e56824b9",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
