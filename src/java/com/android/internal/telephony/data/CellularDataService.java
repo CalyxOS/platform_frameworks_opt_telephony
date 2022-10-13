@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.telephony.dataconnection;
+package com.android.internal.telephony.data;
 
 import static android.telephony.data.DataServiceCallback.RESULT_SUCCESS;
 
@@ -37,6 +37,7 @@ import com.android.internal.telephony.Phone;
 import com.android.internal.telephony.PhoneFactory;
 import com.android.telephony.Rlog;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class CellularDataService extends DataService {
     private static final boolean DBG = false;
 
     private static final int SETUP_DATA_CALL_COMPLETE               = 1;
-    private static final int DEACTIVATE_DATA_ALL_COMPLETE           = 2;
+    private static final int DEACTIVATE_DATA_CALL_COMPLETE          = 2;
     private static final int SET_INITIAL_ATTACH_APN_COMPLETE        = 3;
     private static final int SET_DATA_PROFILE_COMPLETE              = 4;
     private static final int REQUEST_DATA_CALL_LIST_COMPLETE        = 5;
@@ -87,7 +88,7 @@ public class CellularDataService extends DataService {
                                     : RESULT_SUCCESS,
                                     response);
                             break;
-                        case DEACTIVATE_DATA_ALL_COMPLETE:
+                        case DEACTIVATE_DATA_CALL_COMPLETE:
                             callback.onDeactivateDataCallComplete(ar.exception != null
                                     ? DataServiceCallback.RESULT_ERROR_ILLEGAL_STATE
                                     : RESULT_SUCCESS);
@@ -107,8 +108,8 @@ public class CellularDataService extends DataService {
                                     ar.exception != null
                                             ? DataServiceCallback.RESULT_ERROR_ILLEGAL_STATE
                                             : RESULT_SUCCESS,
-                                    ar.exception != null
-                                            ? null : (List<DataCallResponse>) ar.result
+                                    ar.result != null ? (List<DataCallResponse>) ar.result
+                                            : Collections.EMPTY_LIST
                                     );
                             break;
                         case DATA_CALL_LIST_CHANGED:
@@ -121,7 +122,11 @@ public class CellularDataService extends DataService {
                             callback.onHandoverCancelled(toResultCode(ar.exception));
                             break;
                         case APN_UNTHROTTLED:
-                            notifyApnUnthrottled((String) ar.result);
+                            if (ar.result instanceof DataProfile) {
+                                notifyDataProfileUnthrottled((DataProfile) ar.result);
+                            } else {
+                                notifyApnUnthrottled((String) ar.result);
+                            }
                             break;
                         default:
                             loge("Unexpected event: " + message.what);
@@ -185,7 +190,7 @@ public class CellularDataService extends DataService {
             // Only obtain the message when the caller wants a callback. If the caller doesn't care
             // the request completed or results, then no need to pass the message down.
             if (callback != null) {
-                message = Message.obtain(mHandler, DEACTIVATE_DATA_ALL_COMPLETE);
+                message = Message.obtain(mHandler, DEACTIVATE_DATA_CALL_COMPLETE);
                 mCallbackMap.put(message, callback);
             }
 
