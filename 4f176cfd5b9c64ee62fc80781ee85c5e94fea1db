@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94795d4c_c0918492",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000000
+      },
+      "writtenOn": "2022-10-21T22:59:01Z",
+      "side": 1,
+      "message": "Didn\u0027t pull in the 1.0/1.1 commit since we don\u0027t need it",
+      "revId": "4f176cfd5b9c64ee62fc80781ee85c5e94fea1db",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
