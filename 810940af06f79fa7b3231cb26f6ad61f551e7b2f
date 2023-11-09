@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bad6ded8_261a6191",
+        "filename": "src/java/com/android/internal/telephony/imsphone/ImsPhoneCallTracker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000062
+      },
+      "writtenOn": "2023-11-09T13:39:34Z",
+      "side": 1,
+      "message": "Missing import for SystemProperties? Does this build?",
+      "revId": "810940af06f79fa7b3231cb26f6ad61f551e7b2f",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
