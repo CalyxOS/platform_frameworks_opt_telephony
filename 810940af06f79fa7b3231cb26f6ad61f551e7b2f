@@ -16,6 +16,24 @@
       "message": "Missing import for SystemProperties? Does this build?",
       "revId": "810940af06f79fa7b3231cb26f6ad61f551e7b2f",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "600526a0_8c650ae8",
+        "filename": "src/java/com/android/internal/telephony/imsphone/ImsPhoneCallTracker.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-11-09T13:43:36Z",
+      "side": 1,
+      "message": "Not tested yet, only required for Pixel 3",
+      "parentUuid": "bad6ded8_261a6191",
+      "revId": "810940af06f79fa7b3231cb26f6ad61f551e7b2f",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
