@@ -16,6 +16,23 @@
       "message": "Could wait",
       "revId": "7d41388862d829257e6569f033460d98ed5ee419",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8a0d662d_b24a7193",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000004
+      },
+      "writtenOn": "2023-11-14T14:21:31Z",
+      "side": 1,
+      "message": "Needed for qcom devices (moto/FP4)",
+      "revId": "7d41388862d829257e6569f033460d98ed5ee419",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
