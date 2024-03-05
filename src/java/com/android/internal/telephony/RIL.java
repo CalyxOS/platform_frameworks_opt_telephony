@@ -3027,8 +3027,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
             mMetrics.writeSetPreferredNetworkType(mPhoneId, networkType);
 
             try {
-                networkProxy.setPreferredNetworkTypeBitmap(
-                        rr.mSerial, mAllowedNetworkTypesBitmask, networkType);
+                networkProxy.setPreferredNetworkTypeBitmap(rr.mSerial, mAllowedNetworkTypesBitmask);
             } catch (RemoteException | RuntimeException e) {
                 handleRadioProxyExceptionForRR(HAL_SERVICE_NETWORK, "setPreferredNetworkType", e);
             }
