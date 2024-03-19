@@ -1283,6 +1283,16 @@ public class RIL extends BaseCommands implements CommandsInterface {
     }
 
     @Override
+    public void getIccSlotsStatus(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    @Override
+    public void setLogicalToPhysicalSlotMapping(int[] physicalSlots, Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    @Override
     public void supplyIccPin(String pin, Message result) {
         supplyIccPinForApp(pin, null, result);
     }
@@ -1471,7 +1481,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
         }
         RadioSimProxy simProxy = getRadioServiceProxy(RadioSimProxy.class);
         if (!canMakeRequest("supplySimDepersonalization", simProxy, result,
-                RADIO_HAL_VERSION_1_5)) {
+                RADIO_HAL_VERSION_1_4)) {
             return;
         }
 
@@ -1988,8 +1998,9 @@ public class RIL extends BaseCommands implements CommandsInterface {
     }
 
     @Override
-    public void setupDataCall(int accessNetworkType, DataProfile dataProfile, boolean allowRoaming,
-            int reason, LinkProperties linkProperties, int pduSessionId, NetworkSliceInfo sliceInfo,
+    public void setupDataCall(int accessNetworkType, DataProfile dataProfile,
+            boolean isRoaming /* unused */, boolean allowRoaming, int reason,
+            LinkProperties linkProperties, int pduSessionId, NetworkSliceInfo sliceInfo,
             TrafficDescriptor trafficDescriptor, boolean matchAllRuleAllowed, Message result) {
         RadioDataProxy dataProxy = getRadioServiceProxy(RadioDataProxy.class);
         if (!canMakeRequest("setupDataCall", dataProxy, result, RADIO_HAL_VERSION_1_4)) {
@@ -2619,6 +2630,16 @@ public class RIL extends BaseCommands implements CommandsInterface {
         });
     }
 
+    /**
+     * @deprecated
+     */
+    @Override
+    @Deprecated
+    public void getPDPContextList(Message result) {
+        // TODO(b/280900995): remove this and references
+        getDataCallList(result);
+    }
+
     @Override
     public void getDataCallList(Message result) {
         RadioDataProxy dataProxy = getRadioServiceProxy(RadioDataProxy.class);
@@ -2635,6 +2656,17 @@ public class RIL extends BaseCommands implements CommandsInterface {
         radioServiceInvokeHelper(HAL_SERVICE_DATA, rr, "getDataCallList", () -> {
             dataProxy.getDataCallList(rr.mSerial);
         });
+    }
+
+    @UnsupportedAppUsage(maxTargetSdk = Build.VERSION_CODES.R, trackingBug = 170729553)
+    @Override
+    public void invokeOemRilRequestRaw(byte[] data, Message response) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    @Override
+    public void invokeOemRilRequestStrings(String[] strings, Message result) {
+        // TODO(b/280900995): remove this and references
     }
 
     @Override
@@ -3727,7 +3759,8 @@ public class RIL extends BaseCommands implements CommandsInterface {
     }
 
     @Override
-    public void setInitialAttachApn(DataProfile dataProfile, Message result) {
+    public void setInitialAttachApn(DataProfile dataProfile, boolean isRoaming /* unused */,
+            Message result) {
         RadioDataProxy dataProxy = getRadioServiceProxy(RadioDataProxy.class);
         if (!canMakeRequest("setInitialAttachApn", dataProxy, result, RADIO_HAL_VERSION_1_4)) {
             return;
@@ -4015,6 +4048,17 @@ public class RIL extends BaseCommands implements CommandsInterface {
         });
     }
 
+    /**
+     * Whether the device modem supports reporting the EID in either the slot or card status or
+     * through ATR.
+     * @return true if the modem supports EID.
+     */
+    @Override
+    public boolean supportsEid() {
+        // TODO(b/280900995): remove this and references
+        return true;
+    }
+
     @Override
     public void setDataAllowed(boolean allowed, Message result) {
         RadioDataProxy dataProxy = getRadioServiceProxy(RadioDataProxy.class);
@@ -4079,7 +4123,7 @@ public class RIL extends BaseCommands implements CommandsInterface {
     }
 
     @Override
-    public void setDataProfile(DataProfile[] dps, Message result) {
+    public void setDataProfile(DataProfile[] dps, boolean isRoaming /* unused */, Message result) {
         RadioDataProxy dataProxy = getRadioServiceProxy(RadioDataProxy.class);
         if (!canMakeRequest("setDataProfile", dataProxy, result, RADIO_HAL_VERSION_1_4)) {
             return;
@@ -4157,6 +4201,16 @@ public class RIL extends BaseCommands implements CommandsInterface {
         });
     }
 
+    @Override
+    public void startLceService(int reportIntervalMs, boolean pullMode, Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    @Override
+    public void stopLceService(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
     /**
      * Control the data throttling at modem.
      *
@@ -4187,6 +4241,22 @@ public class RIL extends BaseCommands implements CommandsInterface {
             dataProxy.setDataThrottling(rr.mSerial, (byte) dataThrottlingAction,
                     completionWindowMillis);
         });
+    }
+
+    /**
+     * This will only be called if the LCE service is started in PULL mode, which is
+     * only enabled when using Radio HAL versions 1.1 and earlier.
+     *
+     * It is still possible for vendors to override this behavior and use the 1.1 version
+     * of LCE; however, this is strongly discouraged and this functionality will be removed
+     * when HAL 1.x support is dropped.
+     *
+     * @deprecated HAL 1.2 and later use an always-on LCE that relies on indications.
+     */
+    @Deprecated
+    @Override
+    public void pullLceData(Message result) {
+        // TODO(b/280900995): remove this and references
     }
 
     @Override
@@ -4419,6 +4489,33 @@ public class RIL extends BaseCommands implements CommandsInterface {
         });
     }
 
+    @Override
+    public void getIMEI(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    @Override
+    public void getIMEISV(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    /**
+     * @deprecated
+     */
+    @Deprecated
+    @Override
+    public void getLastPdpFailCause(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
+    /**
+     * The preferred new alternative to getLastPdpFailCause
+     */
+    @Override
+    public void getLastDataCallFailCause(Message result) {
+        // TODO(b/280900995): remove this and references
+    }
+
     /**
      * Enable or disable uicc applications on the SIM.
      *
@@ -4477,6 +4574,11 @@ public class RIL extends BaseCommands implements CommandsInterface {
     public boolean canToggleUiccApplicationsEnablement() {
         return canMakeRequest("canToggleUiccApplicationsEnablement",
                 getRadioServiceProxy(RadioSimProxy.class), null, RADIO_HAL_VERSION_1_5);
+    }
+
+    @Override
+    public void resetRadio(Message result) {
+        // TODO(b/280900995): remove this and references
     }
 
     /**
